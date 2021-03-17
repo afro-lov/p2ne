@@ -1,6 +1,7 @@
 from pysnmp.hlapi import *
-
+# инфа о системе:
 snmp_object = ObjectIdentity('SNMPv2-MIB', 'sysDescr', 0)
+# интерфейсы тут:
 snmp_object2 = ObjectIdentity('1.3.6.1.2.1.2.2.1.2')
 
 result = getCmd(SnmpEngine(),
