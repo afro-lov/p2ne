@@ -42,7 +42,10 @@ for file in glob.glob('d:\OneDrive\Docs\Python_cource\config_files\*'):
             elif a[1] == 3:
                 int_list.append(a[0])
 
-print(ip_list)
-print(host_list)
-print(int_list)
+# print(ip_list)
+for i in ip_list: print(i['ip'])
+# print(host_list)
+for i in host_list: print(i['host'])
+# print(int_list)
+for i in int_list: print(i['int'])
 
