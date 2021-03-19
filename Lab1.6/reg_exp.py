@@ -3,12 +3,18 @@ import ipaddress
 import glob
 
 def func(val):
+    # ищем строки типа: "ip address 10.12.222.188 255.255.255.192"
     ip_mask = re.search('(?<=ip address )(([0-9]{1,3}[.]){3}[0-9]{1,3}) (([0-9]{1,3}[.]){3}[0-9]{1,3})', val)
+    # ищем строки типа: "hostname beeline-catme3400"
     host_name = re.match('hostname ([a-zA-Z0-9-]+)', val)
+    # ищем строки типа: "interface Vlan183"
     int = re.match('interface ([a-zA-Z0-9]+)', val)
     if ip_mask:
         ip_d = {}
+        # генерим словарик типа: {"ip":IPv4Interface()}
+        # из ip_mask берем "10.12.222.188 255.255.255.192" меняя пробел на / и пихаем в ipaddress.IPv4Interface
         ip_d['ip'] = ipaddress.IPv4Interface(ip_mask.group(0).replace(' ','/'))
+        # пример результата: {'ip': IPv4Interface('10.12.163.124/25')}
         return ip_d , 1
     elif host_name:
         host_d = {}
