@@ -1,3 +1,19 @@
+"""
+Подключить библиотеку ipaddress
+
+Написать функцию-классификатор, которая на вход принимает произвольную строку и возвращает словарь:
+- {"ip":IPv4Interface()} — для строк вида " ip address x.x.x.x x.x.x.x"
+- {“int”:str} — для строк вида "interface name"
+- {"host":str} — для строк вида "hostname xxx"
+- пустой словарь — во всех остальных случаях
+
+Аналогично предыдущей работе открыть последовательно каждый конфигурационный файл, прочитать его построчно
+
+Классифицировать каждую прочитанную строку
+
+Создать три списка: все IP-адреса, все имена интерфейсов, все имена хостов, вывести на экран
+"""
+
 import re
 import ipaddress
 import glob
@@ -8,7 +24,7 @@ def func(val):
     # ищем строки типа: "hostname beeline-catme3400"
     host_name = re.match('hostname ([a-zA-Z0-9-]+)', val)
     # ищем строки типа: "interface Vlan183"
-    int = re.match('interface ([a-zA-Z0-9]+)', val)
+    int = re.match('interface ([a-zA-Z0-9/-]+)', val)
     if ip_mask:
         ip_d = {}
         # генерим словарик типа: {"ip":IPv4Interface()}
@@ -42,10 +58,13 @@ for file in glob.glob('d:\OneDrive\Docs\Python_cource\config_files\*'):
             elif a[1] == 3:
                 int_list.append(a[0])
 
-# print(ip_list)
-for i in ip_list: print(i['ip'])
-# print(host_list)
-for i in host_list: print(i['host'])
-# print(int_list)
-for i in int_list: print(i['int'])
+# ip_list = list(set(ip_list))
+# TypeError: unhashable type: 'dict'
+
+print(ip_list)
+# for i in ip_list: print(i['ip'])
+print(host_list)
+# for i in host_list: print(i['host'])
+print(int_list)
+# for i in int_list: print(i['int'])
 
