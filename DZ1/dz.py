@@ -67,17 +67,3 @@ while i <= len(ip_list_u)+1:
     i += 1
 
 wb.save('C:\\Users\\root\\PycharmProjects\\p2ne\\DZ1\\dz.xlsx')
-
-"""
-need_ip = 0
-def find_int(val):
-    if need_ip == 1 :  # предыдущий interface без IP
-    int = re.match('interface ([a-zA-Z0-9/]+)', val)
-    if int: need_ip = 1
-
-def find_ip(val):
-    ip_mask = re.search('(?<=ip address )(([0-9]{1,3}[.]){3}[0-9]{1,3}) (([0-9]{1,3}[.]){3}[0-9]{1,3})', val)
-    ip = ipaddress.IPv4Interface(ip_mask.group(0).replace(' ', '/'))
-    need_ip = 0 # ip для предыдущего интерфейса найден
-    pass
-"""
